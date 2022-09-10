@@ -1,12 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewCountryComponent } from './pages/new-country/new-country.component';
-import { CountryListComponent } from './pages/country-list/country-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CountryFormComponent } from './components/country-form/country-form.component';
+import { CountryFormComponent } from './components';
+import {
+  CountryDetailComponent,
+  CountryListComponent,
+  NewCountryComponent,
+} from './pages';
+import {
+  CountryEditCanDeactivateGuardService,
+  CountryService,
+} from './services';
 
 @NgModule({
-  declarations: [NewCountryComponent, CountryListComponent, CountryFormComponent],
+  declarations: [
+    NewCountryComponent,
+    CountryListComponent,
+    CountryFormComponent,
+    CountryDetailComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  providers: [CountryService, CountryEditCanDeactivateGuardService],
 })
 export class CountryModule {}

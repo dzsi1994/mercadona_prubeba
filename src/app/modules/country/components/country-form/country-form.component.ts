@@ -7,7 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./country-form.component.scss'],
 })
 export class CountryFormComponent implements OnInit {
-  countryForm!: FormGroup = this.fb.group({
+  isUpdating = false;
+  countryForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     officalLanguage: ['', Validators.required],
     capital: ['', Validators.required],
@@ -16,4 +17,12 @@ export class CountryFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  saveCountry(): void {
+    this.isUpdating = true;
+    if (this.countryForm.invalid) {
+      this.countryForm.markAllAsTouched();
+      return;
+    }
+  }
 }
