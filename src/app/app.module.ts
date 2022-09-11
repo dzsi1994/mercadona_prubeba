@@ -8,6 +8,7 @@ import { NavComponent } from './layout/nav/nav.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     RouterModule,
     HttpClientModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

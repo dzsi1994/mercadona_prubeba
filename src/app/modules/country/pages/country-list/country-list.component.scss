@@ -4,4 +4,11 @@ table {
   img {
     cursor: pointer;
   }
+  .country-list__actions {
+    display: flex;
+    align-items: center;
+    mat-icon {
+      cursor: pointer;
+    }
+  }
 }

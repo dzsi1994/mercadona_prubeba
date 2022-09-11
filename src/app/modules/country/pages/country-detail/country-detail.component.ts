@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Country } from '@models/*';
 import { filter, Observable, switchMap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
 
@@ -9,7 +10,7 @@ import { CountryService } from '../../services/country.service';
   styleUrls: ['./country-detail.component.scss'],
 })
 export class CountryDetailComponent implements OnInit {
-  countryDetails$!: Observable<any>;
+  countryDetails$!: Observable<Country>;
   constructor(
     private countryService: CountryService,
     private activatedRoute: ActivatedRoute

@@ -1,5 +1,37 @@
-<ng-container *ngIf="countryDetails$ | async | slice: 0:1 as countryDetails">
-  <mat-card>
-    {{ countryDetails | json }}
-  </mat-card>
-</ng-container>
+<div *ngIf="countryDetails$ | async; let country" class="country">
+  <button class="button shadow" [routerLink]="'/'">
+    <span class="fa fa-arrow-left"></span>
+    Back
+  </button>
+  <div class="country-layout">
+    <img [src]="country.flags.svg" />
+    <div class="country-detail">
+      <h3>{{ country.name.common }}</h3>
+
+      <div class="country-info">
+        <div class="country-section">
+          <p>
+            <strong>Official Name:</strong>
+            {{ country.name.official }}
+          </p>
+          <p>
+            <strong>Population:</strong>
+            {{ country.population | number: "1.0" }}
+          </p>
+          <p>
+            <strong>Region:</strong>
+            {{ country.region }}
+          </p>
+          <p>
+            <strong>Sub Region:</strong>
+            {{ country.subregion }}
+          </p>
+          <p>
+            <strong>Capital:</strong>
+            {{ country.capital }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

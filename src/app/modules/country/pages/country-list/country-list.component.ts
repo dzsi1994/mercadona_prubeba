@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Country } from '@models/*';
 import {
   debounceTime,
@@ -23,6 +24,7 @@ export class CountryListComponent implements OnInit {
     'population',
     'languages',
     'flag',
+    'actions',
   ];
 
   countryDetails$!: Observable<Country[]>;
@@ -30,18 +32,11 @@ export class CountryListComponent implements OnInit {
 
   constructor(
     private countryService: CountryService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.countryDetails$ = this.searchTerm.valueChanges.pipe(
-      takeWhile((searchTerm) => searchTerm.length > 0),
-      debounceTime(400),
-      distinctUntilChanged(),
-      switchMap((searchTerm) =>
-        this.countryService.getCountryDetails(searchTerm)
-      )
-    );
     this.countryDetails$ = this.countryService.getCountries();
   }
 

@@ -16,6 +16,7 @@ const routes: Routes = [
     canDeactivate: [CountryEditCanDeactivateGuardService],
   },
   { path: ':countryId', component: CountryDetailComponent },
+  { path: ':countryId/edit', component: CountryDetailComponent },
 ];
 
 @NgModule({

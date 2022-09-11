@@ -1,5 +1,13 @@
 <mat-dialog-content class="dialog-content">
   <div class="dialog-content__close-icon" (click)="closeDialog()">&times;</div>
   <h2 mat-dialog-title>{{ country.name.common }}</h2>
-  <img width="128" [src]="country.coatOfArms.png" alt="" />
+  <img
+    width="128"
+    [src]="country.coatOfArms.png"
+    alt=""
+    *ngIf="country.coatOfArms.png; else imageNotFound"
+  />
+  <ng-template #imageNotFound>
+    Image can not be found for {{ country.name.common }}
+  </ng-template>
 </mat-dialog-content>

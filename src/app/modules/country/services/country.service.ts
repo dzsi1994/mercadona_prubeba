@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Country } from '@models/*';
 
 @Injectable({
@@ -16,7 +16,9 @@ export class CountryService {
     return this.http.get<Country[]>(`${this.apiUrl}/all`);
   }
 
-  getCountryDetails(countryIsoCode: string): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.apiUrl}/name/${countryIsoCode}`);
+  getCountryDetails(countryIsoCode: string): Observable<Country> {
+    return this.http
+      .get<Country[]>(`${this.apiUrl}/name/${countryIsoCode}`)
+      .pipe(map(([res]: Country[]) => res));
   }
 }
