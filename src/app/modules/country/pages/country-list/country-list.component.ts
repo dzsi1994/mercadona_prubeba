@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Country } from '@models/*';
-import { first, Observable } from 'rxjs';
+import { first } from 'rxjs';
 import { CoatOfArmsModalDialogComponent } from '../../components';
 import { CountryService } from '../../services';
 
