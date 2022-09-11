@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {
   CountryDetailComponent,
@@ -22,6 +23,7 @@ import { CountryRoutingModule } from './country-routing.module';
 import { RouterModule } from '@angular/router';
 import { CoatOfArmsModalDialogComponent } from './components/coat-of-arms-modal-dialog/coat-of-arms-modal-dialog.component';
 import { LanguagePipe } from './pipes/language.pipe';
+import { CountryEditComponent } from './pages/country-edit/country-edit.component';
 
 const components = [
   CountryDetailComponent,
@@ -42,12 +44,13 @@ const modules = [
   MatDialogModule,
   MatIconModule,
   MatButtonModule,
+  MatSnackBarModule,
 ];
 
 const services = [CountryService, CountryEditCanDeactivateGuardService];
 
 @NgModule({
-  declarations: [...components, LanguagePipe],
+  declarations: [...components, LanguagePipe, CountryEditComponent],
   imports: [...modules],
   providers: [...services],
 })

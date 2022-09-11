@@ -6,6 +6,7 @@ import { Country } from '@models/*';
 import {
   debounceTime,
   distinctUntilChanged,
+  first,
   Observable,
   switchMap,
   takeWhile,
@@ -29,7 +30,8 @@ export class CountryListComponent implements OnInit {
   ];
 
   countryDetails$!: Observable<Country[]>;
-  searchTerm = new FormControl();
+  searchTerm: string = '';
+  source!: Country[];
 
   constructor(
     private countryService: CountryService,
@@ -38,7 +40,12 @@ export class CountryListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.countryDetails$ = this.countryService.getAllCountries();
+    this.countryService
+      .getAllCountries()
+      .pipe(first())
+      .subscribe((countries) => {
+        this.source = countries;
+      });
   }
 
   displayModal(country: Country) {
@@ -48,5 +55,17 @@ export class CountryListComponent implements OnInit {
     dialogConfig.width = '500px';
 
     this.dialog.open(CoatOfArmsModalDialogComponent, dialogConfig);
+  }
+
+  get countries() {
+    return this.source
+      ? this.source.filter((country) =>
+          this.searchTerm
+            ? country.name.common
+                .toLowerCase()
+                .includes(this.searchTerm.toLowerCase())
+            : country
+        )
+      : this.source;
   }
 }

@@ -6,6 +6,7 @@ import {
   CountryListComponent,
   NewCountryComponent,
 } from './pages';
+import { CountryEditComponent } from './pages/country-edit/country-edit.component';
 import { CountryEditCanDeactivateGuardService } from './services';
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
     canDeactivate: [CountryEditCanDeactivateGuardService],
   },
   { path: ':countryId', component: CountryDetailComponent },
-  { path: ':countryId/edit', component: CountryDetailComponent },
+  { path: ':countryId/edit', component: CountryEditComponent },
 ];
 
 @NgModule({
