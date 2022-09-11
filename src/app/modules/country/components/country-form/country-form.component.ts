@@ -25,4 +25,19 @@ export class CountryFormComponent implements OnInit {
       return;
     }
   }
+
+  // formValidator(name: string, errorCode: string = ''): boolean {
+  //   if (errorCode === '') {
+  //     return (
+  //       this.countryForm?.get(`${name}`)?.hasError('required') &&
+  //       this.countryForm?.get(`${name}`)?.touched
+  //     );
+  //   } else {
+  //     return (
+  //       this.countryForm.get(`${name}`).hasError(`${errorCode}`) &&
+  //       this.countryForm.get(`${name}`).dirty &&
+  //       !this.formValidator(`${name}`)
+  //     );
+  //   }
+  // }
 }

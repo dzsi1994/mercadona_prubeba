@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Country } from '@models/*';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,11 @@ export class CountryService {
 
   constructor(private http: HttpClient) {}
 
-  getCountries(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  getCountries(): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.apiUrl}/all`);
   }
 
-  getCountryDetails() {
-    return this.http.get<any[]>(`${this.apiUrl}/all`);
+  getCountryDetails(countryIsoCode: string): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.apiUrl}/name/${countryIsoCode}`);
   }
 }

@@ -1,1 +1,5 @@
-<p>country-detail works!</p>
+<ng-container *ngIf="countryDetails$ | async | slice: 0:1 as countryDetails">
+  <mat-card>
+    {{ countryDetails | json }}
+  </mat-card>
+</ng-container>
