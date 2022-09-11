@@ -1,6 +1,6 @@
 <mat-card class="new-country">
   <mat-card-title class="new-country__title">Edit country</mat-card-title>
-  <form action="" [formGroup]="countryForm" (ngSubmit)="saveCountry()">
+  <form action="" [formGroup]="countryForm" (ngSubmit)="updateCountry()">
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Country name</mat-label>
@@ -28,7 +28,7 @@
     <div class="new-country__actions">
       <button mat-raised-button [routerLink]="'/country'">Cancel</button>
       <button mat-raised-button color="primary" type="submit">
-        Save country
+        Update country
       </button>
     </div>
   </form>

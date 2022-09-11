@@ -1,17 +1,28 @@
-table {
-  width: 100%;
-  margin-top: 1.5rem;
-  img {
-    cursor: pointer;
-  }
-  .country-list__actions {
+.country-list {
+  padding: 1rem;
+  &__header {
     display: flex;
     align-items: center;
-    mat-icon {
+    justify-content: space-between;
+    &__add {
       cursor: pointer;
     }
   }
-  .google-link {
-    color: unset;
+  table {
+    width: 100%;
+    margin-top: 1.5rem;
+    img {
+      cursor: pointer;
+    }
+    .country-list__actions {
+      display: flex;
+      align-items: center;
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+    .google-link {
+      color: unset;
+    }
   }
 }

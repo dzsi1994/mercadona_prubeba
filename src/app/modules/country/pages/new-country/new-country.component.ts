@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CountryService } from '../../services';
 
 @Component({
   selector: 'app-new-country',
@@ -8,13 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-country.component.scss'],
 })
 export class NewCountryComponent implements OnInit {
-  countryForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    officalLanguage: ['', Validators.required],
-    capital: ['', Validators.required],
-    population: ['', Validators.required],
-  });
-  constructor(private fb: FormBuilder, private router: Router) {}
+  countryForm: FormGroup = this.countryService.generateCountryForm();
+
+  constructor(private router: Router, private countryService: CountryService) {}
 
   ngOnInit(): void {}
   saveCountry() {

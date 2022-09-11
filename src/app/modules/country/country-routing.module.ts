@@ -5,8 +5,9 @@ import {
   CountryDetailComponent,
   CountryListComponent,
   NewCountryComponent,
+  CountryEditComponent,
 } from './pages';
-import { CountryEditComponent } from './pages/country-edit/country-edit.component';
+
 import { CountryEditCanDeactivateGuardService } from './services';
 
 const routes: Routes = [

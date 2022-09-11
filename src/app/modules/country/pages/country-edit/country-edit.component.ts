@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Country } from '@models/*';
@@ -12,19 +12,12 @@ import { CountryService } from '../../services';
   styleUrls: ['./country-edit.component.scss'],
 })
 export class CountryEditComponent implements OnInit {
-  countryForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    officalLanguage: ['', Validators.required],
-    capital: ['', Validators.required],
-    population: ['', Validators.required],
-  });
+  countryForm: FormGroup = this.countryService.generateCountryForm();
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private countryService: CountryService,
-    private _snackBar: MatSnackBar
+    private countryService: CountryService
   ) {}
 
   ngOnInit(): void {
@@ -54,10 +47,8 @@ export class CountryEditComponent implements OnInit {
     return Object.values(language)[0];
   }
 
-  saveCountry() {
-    this._snackBar.open('Successfully updated', 'Close', {
-      duration: 4000,
-    });
+  updateCountry() {
+    this.countryService.openSnackBar('Country successfully updated!');
     this.router.navigate(['/country']);
   }
 }
