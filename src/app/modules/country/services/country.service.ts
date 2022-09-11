@@ -42,4 +42,23 @@ export class CountryService {
       duration: 4000,
     });
   }
+
+  formValidator(
+    detailsForm: FormGroup,
+    name: string,
+    errorCode: string | null = null
+  ): boolean {
+    if (errorCode === null) {
+      return (
+        detailsForm!.get(`${name}`)!.hasError('required') &&
+        detailsForm!.get(`${name}`)!.touched
+      );
+    } else {
+      return (
+        detailsForm!.get(`${name}`)!.hasError(`${errorCode}`) &&
+        detailsForm!.get(`${name}`)!.dirty &&
+        !this.formValidator(detailsForm, `${name}`)
+      );
+    }
+  }
 }

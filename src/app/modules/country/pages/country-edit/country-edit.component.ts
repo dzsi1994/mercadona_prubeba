@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Country } from '@models/*';
 import { filter, switchMap } from 'rxjs';
@@ -48,7 +47,27 @@ export class CountryEditComponent implements OnInit {
   }
 
   updateCountry() {
-    this.countryService.openSnackBar('Country successfully updated!');
+    if (this.countryForm.invalid) {
+      this.countryForm.markAllAsTouched();
+      return;
+    }
+    this.countryService.openSnackBar('Operation successfull!');
+    this.countryForm.reset();
     this.router.navigate(['/country']);
+  }
+
+  formValidator(name: string, errorCode: string | null = null): boolean {
+    if (errorCode === null) {
+      return (
+        this.countryForm!.get(`${name}`)!.hasError('required') &&
+        this.countryForm!.get(`${name}`)!.touched
+      );
+    } else {
+      return (
+        this.countryForm!.get(`${name}`)!.hasError(`${errorCode}`) &&
+        this.countryForm!.get(`${name}`)!.dirty &&
+        !this.formValidator(`${name}`)
+      );
+    }
   }
 }

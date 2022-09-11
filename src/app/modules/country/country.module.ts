@@ -9,12 +9,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-import {
-  CountryDetailComponent,
-  CountryListComponent,
-  NewCountryComponent,
-} from './pages';
+import { CountryDetailComponent, CountryListComponent } from './pages';
 import {
   CountryEditCanDeactivateGuardService,
   CountryService,
@@ -28,7 +25,7 @@ import { CountryEditComponent } from './pages/country-edit/country-edit.componen
 const components = [
   CountryDetailComponent,
   CountryListComponent,
-  NewCountryComponent,
+  CountryEditComponent,
   CoatOfArmsModalDialogComponent,
 ];
 const modules = [
@@ -45,12 +42,13 @@ const modules = [
   MatIconModule,
   MatButtonModule,
   MatSnackBarModule,
+  MatTooltipModule,
 ];
 
 const services = [CountryService, CountryEditCanDeactivateGuardService];
 
 @NgModule({
-  declarations: [...components, LanguagePipe, CountryEditComponent],
+  declarations: [...components, LanguagePipe],
   imports: [...modules],
   providers: [...services],
 })

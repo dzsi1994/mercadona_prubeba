@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NewCountryComponent } from '../pages';
+import { CountryEditComponent } from '../pages';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountryEditCanDeactivateGuardService
-  implements CanDeactivate<NewCountryComponent>
+  implements CanDeactivate<CountryEditComponent>
 {
   constructor() {}
-  canDeactivate(component: NewCountryComponent): Observable<boolean> | boolean {
+  canDeactivate(
+    component: CountryEditComponent
+  ): Observable<boolean> | boolean {
     if (component.countryForm.dirty) {
       return window.confirm('You have unsaved changes! Leave?');
     }

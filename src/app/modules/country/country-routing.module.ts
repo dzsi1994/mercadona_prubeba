@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   CountryDetailComponent,
   CountryListComponent,
-  NewCountryComponent,
   CountryEditComponent,
 } from './pages';
 
@@ -14,11 +13,15 @@ const routes: Routes = [
   { path: '', component: CountryListComponent },
   {
     path: 'new',
-    component: NewCountryComponent,
+    component: CountryEditComponent,
     canDeactivate: [CountryEditCanDeactivateGuardService],
   },
   { path: ':countryId', component: CountryDetailComponent },
-  { path: ':countryId/edit', component: CountryEditComponent },
+  {
+    path: ':countryId/edit',
+    component: CountryEditComponent,
+    canDeactivate: [CountryEditCanDeactivateGuardService],
+  },
 ];
 
 @NgModule({
