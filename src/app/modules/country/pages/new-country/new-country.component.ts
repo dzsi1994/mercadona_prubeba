@@ -18,6 +18,9 @@ export class NewCountryComponent implements OnInit {
 
   ngOnInit(): void {}
   saveCountry() {
-    console.log(this.countryForm);
+    if (this.countryForm.invalid) {
+      this.countryForm.markAllAsTouched();
+      return;
+    }
   }
 }

@@ -38,7 +38,7 @@ export class CountryListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.countryDetails$ = this.countryService.getCountries();
+    this.countryDetails$ = this.countryService.getAllCountries();
   }
 
   displayModal(country: Country) {

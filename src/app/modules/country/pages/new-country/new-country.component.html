@@ -25,9 +25,11 @@
         <input matInput formControlName="population" />
       </mat-form-field>
     </div>
-    <button mat-raised-button [routerLink]="'/country'">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">
-      Save country
-    </button>
+    <div class="new-country__actions">
+      <button mat-raised-button [routerLink]="'/country'">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">
+        Save country
+      </button>
+    </div>
   </form>
 </mat-card>

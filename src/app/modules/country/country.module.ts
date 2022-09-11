@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
-import { CountryFormComponent } from './components';
 import {
   CountryDetailComponent,
   CountryListComponent,
@@ -27,7 +27,6 @@ const components = [
   CountryDetailComponent,
   CountryListComponent,
   NewCountryComponent,
-  CountryFormComponent,
   CoatOfArmsModalDialogComponent,
 ];
 const modules = [
@@ -42,6 +41,7 @@ const modules = [
   MatTableModule,
   MatDialogModule,
   MatIconModule,
+  MatButtonModule,
 ];
 
 const services = [CountryService, CountryEditCanDeactivateGuardService];

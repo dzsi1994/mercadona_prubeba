@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CountryFormComponent } from '../components/country-form/country-form.component';
 import { NewCountryComponent } from '../pages';
 
 @Injectable({
