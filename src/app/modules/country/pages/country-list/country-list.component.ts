@@ -24,6 +24,7 @@ export class CountryListComponent implements OnInit {
     'population',
     'languages',
     'flag',
+    'location',
     'actions',
   ];
 
