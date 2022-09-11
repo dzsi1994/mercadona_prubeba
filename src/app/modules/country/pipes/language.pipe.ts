@@ -4,11 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'language',
 })
 export class LanguagePipe implements PipeTransform {
-  transform(value: Object, ...args: unknown[]): unknown {
-    const language = Object.values(value)[0];
-    if (!language) {
+  transform(value: Object | undefined, ...args: unknown[]): unknown {
+    if (!value) {
       return '---';
     }
-    return language;
+    return Object.values(value)[0];
   }
 }
