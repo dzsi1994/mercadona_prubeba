@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Country } from '@models/*';
 import { filter, switchMap } from 'rxjs';
@@ -11,12 +12,19 @@ import { CountryService } from '../../services';
   styleUrls: ['./country-edit.component.scss'],
 })
 export class CountryEditComponent implements OnInit {
-  countryForm: FormGroup = this.countryService.generateCountryForm();
+  countryForm: FormGroup = this.fb.group({
+    name: ['', Validators.required],
+    officalLanguage: ['', Validators.required],
+    capital: ['', Validators.required],
+    population: ['', Validators.required],
+  });
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private countryService: CountryService
+    private countryService: CountryService,
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +59,9 @@ export class CountryEditComponent implements OnInit {
       this.countryForm.markAllAsTouched();
       return;
     }
-    this.countryService.openSnackBar('Operation successfull!');
+    this.snackBar.open('Operation successfull!', 'Close', {
+      duration: 4000,
+    });
     this.countryForm.reset();
     this.router.navigate(['/country']);
   }
