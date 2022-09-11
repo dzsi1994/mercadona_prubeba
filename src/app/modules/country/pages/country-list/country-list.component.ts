@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Country } from '@models/*';
 import { Observable } from 'rxjs';
+import { CoatOfArmsModalDialogComponent } from '../../components';
 import { CountryService } from '../../services';
 
 @Component({
@@ -17,13 +19,21 @@ export class CountryListComponent implements OnInit {
   ];
 
   countryDetails$!: Observable<Country[]>;
-  constructor(private countryService: CountryService) {}
+  constructor(
+    private countryService: CountryService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.countryDetails$ = this.countryService.getCountryDetails('peru');
   }
   displayModal(country: Country) {
-    console.log(country);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = country;
+    dialogConfig.width = '500px';
+
+    this.dialog.open(CoatOfArmsModalDialogComponent, dialogConfig);
   }
   //Popup form for creating a country
   // openDialog() {

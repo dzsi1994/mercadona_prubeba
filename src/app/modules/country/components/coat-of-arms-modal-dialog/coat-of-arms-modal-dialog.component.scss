@@ -1,0 +1,16 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &__close-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 2rem;
+    font-size: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

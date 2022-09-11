@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { CountryFormComponent } from './components';
 import {
@@ -18,12 +19,14 @@ import {
 } from './services';
 import { CountryRoutingModule } from './country-routing.module';
 import { RouterModule } from '@angular/router';
+import { CoatOfArmsModalDialogComponent } from './components/coat-of-arms-modal-dialog/coat-of-arms-modal-dialog.component';
 
 const components = [
   CountryDetailComponent,
   CountryListComponent,
   NewCountryComponent,
   CountryFormComponent,
+  CoatOfArmsModalDialogComponent,
 ];
 const modules = [
   CommonModule,
@@ -35,6 +38,7 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatTableModule,
+  MatDialogModule,
 ];
 
 const services = [CountryService, CountryEditCanDeactivateGuardService];
