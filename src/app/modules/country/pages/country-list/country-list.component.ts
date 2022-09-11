@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Country } from '@models/*';
-import { Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  switchMap,
+  takeWhile,
+} from 'rxjs';
 import { CoatOfArmsModalDialogComponent } from '../../components';
 import { CountryService } from '../../services';
 
@@ -19,14 +26,25 @@ export class CountryListComponent implements OnInit {
   ];
 
   countryDetails$!: Observable<Country[]>;
+  searchTerm = new FormControl();
+
   constructor(
     private countryService: CountryService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.countryDetails$ = this.countryService.getCountryDetails('peru');
+    this.countryDetails$ = this.searchTerm.valueChanges.pipe(
+      takeWhile((searchTerm) => searchTerm.length > 0),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap((searchTerm) =>
+        this.countryService.getCountryDetails(searchTerm)
+      )
+    );
+    this.countryDetails$ = this.countryService.getCountries();
   }
+
   displayModal(country: Country) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -35,23 +53,4 @@ export class CountryListComponent implements OnInit {
 
     this.dialog.open(CoatOfArmsModalDialogComponent, dialogConfig);
   }
-  //Popup form for creating a country
-  // openDialog() {
-  //   let dialogRef = this.dialog.open(CreateCountryDialogComponent, {
-  //     data: this.input,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result == 'true') {
-  //       this.output = <JSON>this.input;
-  //       this.createCountry(this.output);
-  //       this.input = {
-  //         country_name: '',
-  //         capital: '',
-  //         population: '',
-  //         disabled: false,
-  //       };
-  //     }
-  //   });
-  // }
 }

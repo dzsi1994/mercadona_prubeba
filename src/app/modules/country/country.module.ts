@@ -20,6 +20,7 @@ import {
 import { CountryRoutingModule } from './country-routing.module';
 import { RouterModule } from '@angular/router';
 import { CoatOfArmsModalDialogComponent } from './components/coat-of-arms-modal-dialog/coat-of-arms-modal-dialog.component';
+import { LanguagePipe } from './pipes/language.pipe';
 
 const components = [
   CountryDetailComponent,
@@ -44,7 +45,7 @@ const modules = [
 const services = [CountryService, CountryEditCanDeactivateGuardService];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, LanguagePipe],
   imports: [...modules],
   providers: [...services],
 })

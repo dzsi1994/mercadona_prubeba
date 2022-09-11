@@ -1,4 +1,9 @@
-<input type="text" placeholder="Search by country name" />
+<input
+  type="text"
+  placeholder="Search by country name"
+  [formControl]="searchTerm"
+  name="country-search"
+/>
 <table
   mat-table
   [dataSource]="countryDetails"
@@ -29,7 +34,7 @@
   <ng-container matColumnDef="languages">
     <th mat-header-cell *matHeaderCellDef>Official Language</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.languages }}
+      {{ element.languages | language }}
     </td>
   </ng-container>
 
