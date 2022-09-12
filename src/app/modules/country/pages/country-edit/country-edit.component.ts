@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Country } from '@models/*';
 import { filter, switchMap, tap } from 'rxjs';
+import { LanguagePipe } from '../../pipes/language.pipe';
 import { CountryService } from '../../services';
 
 @Component({
@@ -26,7 +27,8 @@ export class CountryEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private countryService: CountryService,
     private snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private languagePipe: LanguagePipe
   ) {}
 
   ngOnInit(): void {
@@ -48,17 +50,10 @@ export class CountryEditComponent implements OnInit {
   setFormValues(country: Country) {
     this.countryForm.setValue({
       name: country.name.common,
-      officalLanguage: this.getLanguage(country.languages),
+      officalLanguage: this.languagePipe.transform(country.languages),
       capital: country.capital,
       population: country.population,
     });
-  }
-
-  getLanguage(language: Object | undefined) {
-    if (!language) {
-      return '';
-    }
-    return Object.values(language)[0];
   }
 
   updateCountry() {
