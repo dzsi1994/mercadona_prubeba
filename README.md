@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
 
-- Instalar node_modules con:
+- Install node_modules with:
 
 ```code
 npm install
