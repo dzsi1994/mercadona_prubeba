@@ -45,7 +45,11 @@ const modules = [
   MatTooltipModule,
 ];
 
-const services = [CountryService, CountryEditCanDeactivateGuardService];
+const services = [
+  CountryService,
+  CountryEditCanDeactivateGuardService,
+  LanguagePipe,
+];
 
 @NgModule({
   declarations: [...components, LanguagePipe],
