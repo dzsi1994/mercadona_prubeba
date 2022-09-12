@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Country } from '@models/*';
-import { filter, switchMap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 import { CountryService } from '../../services';
 
 @Component({
@@ -19,6 +19,8 @@ export class CountryEditComponent implements OnInit {
     population: ['', Validators.required],
   });
 
+  countryId!: string;
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -31,11 +33,16 @@ export class CountryEditComponent implements OnInit {
     this.activatedRoute.paramMap
       .pipe(
         filter((params: ParamMap) => !!params.get('countryId')),
+        tap(
+          (params: ParamMap) => (this.countryId = params.get('countryId') ?? '')
+        ),
         switchMap((params: ParamMap) =>
           this.countryService.getCountryDetails(params.get('countryId') ?? '')
         )
       )
-      .subscribe((country: Country) => this.setFormValues(country));
+      .subscribe((country: Country) => {
+        this.setFormValues(country);
+      });
   }
 
   setFormValues(country: Country) {

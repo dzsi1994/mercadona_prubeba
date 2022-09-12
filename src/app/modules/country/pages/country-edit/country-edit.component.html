@@ -1,5 +1,7 @@
 <mat-card class="new-country">
-  <mat-card-title class="new-country__title">Edit country</mat-card-title>
+  <mat-card-title class="new-country__title">{{
+    countryId ? "Edit Country" : "Add new country"
+  }}</mat-card-title>
   <form action="" [formGroup]="countryForm" (ngSubmit)="updateCountry()">
     <div class="form-group">
       <mat-form-field appearance="fill">
